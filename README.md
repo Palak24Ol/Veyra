@@ -1,6 +1,8 @@
-# Xero
+# Veyra
 
-**NOTE** : AUTOMATION IS THE KEY. ALL DOCUMENTATIONS ARE WRITTEN BY AI. Comments are also written by AI.
+**Veyra - Your AI-Powered Conversation Partner**
+
+Experience the future of AI conversations with beautiful coral-themed design, intelligent memory, and seamless interactions.
 
 ## 🚀 Features
 
@@ -46,9 +48,9 @@
 
 ### Frontend
 
-- **Next.js 15** - React framework with App Router
+- **Next.js 15** - React framework with App Router and Coral Theme
 - **TypeScript** - Type-safe development
-- **Tailwind CSS** - Utility-first styling
+- **Tailwind CSS 4** - Modern utility-first styling with custom coral theme
 - **Radix UI** - Accessible component primitives
 - **Clerk** - Authentication and user management
 - **Axios** - HTTP client for API requests
@@ -70,6 +72,13 @@
 - **Anthropic API** - Claude models
 - **Google AI** - Gemini models
 - **Mem0 AI** - Conversation memory system
+
+### Design System
+
+- **Coral Theme** - Beautiful coral/pink gradient design
+- **Modern UI** - Rounded corners, shadows, and smooth animations
+- **Responsive Design** - Optimized for all devices
+- **Accessibility** - WCAG compliant with keyboard navigation
 
 ## 📋 Prerequisites
 

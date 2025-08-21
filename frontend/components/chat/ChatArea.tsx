@@ -96,27 +96,27 @@ export default function ChatArea({
   return (
     <div className="flex-1 flex flex-col h-screen bg-white dark:bg-gray-900 relative">
       {/* Header */}
-      <div className="sticky top-0 z-10 bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-700 px-3 sm:px-4 py-2 sm:py-3 shadow-sm">
+      <div className="sticky top-0 z-10 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-coral-200/50 dark:border-gray-700 px-3 sm:px-4 py-3 sm:py-4 shadow-lg">
         <div className="flex items-center justify-between max-w-5xl mx-auto">
           <div className="flex items-center space-x-2 sm:space-x-3 min-w-0 flex-1">
             {!sidebarOpen && (
               <button
                 onClick={onToggleSidebar}
-                className="p-1.5 sm:p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors flex-shrink-0"
+                className="p-1.5 sm:p-2 hover:bg-coral-100 dark:hover:bg-gray-700 rounded-xl transition-all duration-200 flex-shrink-0"
                 title="Open sidebar"
               >
-                <Menu className="h-4 w-4 sm:h-5 sm:w-5 text-gray-600 dark:text-gray-300" />
+                <Menu className="h-4 w-4 sm:h-5 sm:w-5 text-coral-600 dark:text-gray-300" />
               </button>
             )}
             <div className="flex items-center space-x-2 min-w-0">
-              <div className="w-7 h-7 sm:w-8 sm:h-8 bg-green-600 rounded-full flex items-center justify-center flex-shrink-0">
-                <Bot className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-white" />
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-coral-500 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                <Bot className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
               </div>
               <div className="min-w-0">
-                <h1 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white truncate">
-                  Xero
+                <h1 className="text-lg sm:text-xl font-bold bg-gradient-to-r from-coral-600 to-coral-500 bg-clip-text text-transparent truncate">
+                  Veyra
                 </h1>
-                <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
+                <p className="text-xs text-coral-500 dark:text-gray-400 truncate font-medium">
                   {getModelDisplayName(selectedModel)}
                 </p>
               </div>
@@ -139,19 +139,19 @@ export default function ChatArea({
         {messages.length === 0 ? (
           <div className="flex items-center justify-center min-h-0 px-4 py-8">
             <div className="text-center max-w-2xl mx-auto w-full">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                <Sparkles className="h-8 w-8 sm:h-10 sm:w-10 text-white" />
+              <div className="w-20 h-20 sm:w-24 sm:h-24 bg-coral-500 rounded-3xl flex items-center justify-center mx-auto mb-6 sm:mb-8 shadow-xl float-animation">
+                <Sparkles className="h-10 w-10 sm:h-12 sm:w-12 text-white" />
               </div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
+              <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-gray-900 to-coral-600 bg-clip-text text-transparent mb-4 sm:mb-6">
                 How can I help you today?
               </h2>
-              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 px-2">
-                I&apos;m here to assist you with questions, creative writing,
-                analysis, coding, and much more. Let&apos;s start a conversation!
+              <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 mb-8 sm:mb-10 px-2 leading-relaxed">
+                I&apos;m Veyra, your AI companion. Ready to help with questions, 
+                creative projects, analysis, and meaningful conversations.
               </p>
 
               {/* Suggested prompts */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 max-w-2xl mx-auto px-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 max-w-2xl mx-auto px-2">
                 {[
                   "Explain quantum computing in simple terms",
                   "Write a creative story about time travel",
@@ -161,9 +161,9 @@ export default function ChatArea({
                   <button
                     key={index}
                     onClick={() => setInputValue(prompt)}
-                    className="p-3 sm:p-4 text-left border border-gray-200 dark:border-gray-600 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                    className="p-4 sm:p-5 text-left border border-coral-200/50 dark:border-gray-600 rounded-2xl hover:bg-coral-50 dark:hover:bg-gray-800 transition-all duration-200 shadow-sm hover:shadow-md transform hover:scale-105 bg-white/80 backdrop-blur-sm"
                   >
-                    <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                    <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed font-medium">
                       {prompt}
                     </p>
                   </button>
@@ -181,18 +181,18 @@ export default function ChatArea({
               />
             ))}
             {isLoading && (
-              <div className="group w-full bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-700">
+              <div className="group w-full bg-white dark:bg-gray-900 border-b border-coral-100 dark:border-gray-700">
                 <div className="max-w-3xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
                   <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 bg-green-600 rounded-full flex items-center justify-center flex-shrink-0">
-                      <Bot className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-white" />
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-coral-500 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                      <Bot className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center space-x-2 mb-2">
-                        <span className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
-                          Assistant
+                        <span className="font-bold text-gray-900 dark:text-white text-sm sm:text-base">
+                          Veyra
                         </span>
-                        <span className="text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded-full">
+                        <span className="text-xs text-coral-600 dark:text-gray-400 bg-coral-100 dark:bg-gray-700 px-3 py-1 rounded-full font-medium">
                           {getModelDisplayName(selectedModel)}
                         </span>
                       </div>
@@ -208,12 +208,12 @@ export default function ChatArea({
       </div>
 
       {/* Input Area */}
-      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-white dark:from-gray-900 via-white dark:via-gray-900 to-transparent pt-4 sm:pt-6">
+      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-white dark:from-gray-900 via-white/95 dark:via-gray-900/95 to-transparent pt-6 sm:pt-8 backdrop-blur-sm">
         <div className="px-3 sm:px-4 pb-4 sm:pb-6">
           <div className="max-w-3xl mx-auto">
             {/* Attached Files */}
             {attachedFiles.length > 0 && (
-              <div className="mb-3 sm:mb-4">
+              <div className="mb-4 sm:mb-5">
                 <div className="flex flex-wrap gap-2">
                   {attachedFiles.map((file) => (
                     <FileAttachment
@@ -235,8 +235,8 @@ export default function ChatArea({
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder="Message Xero..."
-                  className="w-full resize-none border border-gray-300 dark:border-gray-600 rounded-2xl pl-10 sm:pl-12 pr-12 sm:pr-16 py-3 sm:py-4 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent shadow-lg max-h-[150px] sm:max-h-[200px] bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 text-sm sm:text-base"
+                  placeholder="Message Veyra..."
+                  className="w-full resize-none border border-coral-200 dark:border-gray-600 rounded-3xl pl-12 sm:pl-14 pr-14 sm:pr-18 py-4 sm:py-5 focus:outline-none focus:ring-2 focus:ring-coral-400 focus:border-coral-400 shadow-xl max-h-[150px] sm:max-h-[200px] bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-coral-400 dark:placeholder-gray-400 text-sm sm:text-base transition-all duration-200"
                   rows={1}
                   disabled={isLoading}
                 />
@@ -245,11 +245,11 @@ export default function ChatArea({
                 <button
                   type="button"
                   onClick={() => setFileUploadOpen(true)}
-                  className="absolute left-2 sm:left-3 bottom-3 sm:bottom-4 p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                  className="absolute left-3 sm:left-4 bottom-4 sm:bottom-5 p-2 hover:bg-coral-100 dark:hover:bg-gray-700 rounded-xl transition-all duration-200"
                   disabled={isLoading}
                   title="Attach file"
                 >
-                  <Paperclip className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400 dark:text-gray-500" />
+                  <Paperclip className="h-4 w-4 sm:h-5 sm:w-5 text-coral-500 dark:text-gray-500" />
                 </button>
 
                 {/* Send button */}
@@ -259,20 +259,20 @@ export default function ChatArea({
                     (!inputValue.trim() && attachedFiles.length === 0) ||
                     isLoading
                   }
-                  className="absolute right-3 sm:right-5 bottom-2.5 sm:bottom-3 w-7 h-7 sm:w-8 sm:h-8 bg-black dark:bg-white text-white dark:text-black rounded-lg hover:bg-gray-800 dark:hover:bg-gray-200 disabled:bg-gray-300 dark:disabled:bg-gray-600 disabled:cursor-not-allowed transition-colors flex items-center justify-center"
+                  className="absolute right-4 sm:right-5 bottom-3.5 sm:bottom-4 w-8 h-8 sm:w-10 sm:h-10 bg-coral-500 text-white rounded-2xl hover:bg-coral-600 disabled:bg-coral-300 dark:disabled:bg-gray-600 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center shadow-lg hover:shadow-xl transform hover:scale-105"
                   title="Send message"
                 >
                   {isLoading ? (
-                    <Loader2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 animate-spin" />
+                    <Loader2 className="h-4 w-4 sm:h-5 sm:w-5 animate-spin" />
                   ) : (
-                    <Send className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                    <Send className="h-4 w-4 sm:h-5 sm:w-5" />
                   )}
                 </button>
               </div>
             </form>
 
-            <p className="text-xs text-gray-500 dark:text-gray-400 text-center mt-2 sm:mt-3 px-2">
-              Xero can make mistakes. Check important info.
+            <p className="text-xs text-coral-500 dark:text-gray-400 text-center mt-3 sm:mt-4 px-2 font-medium">
+              Veyra can make mistakes. Please verify important information.
             </p>
           </div>
         </div>
