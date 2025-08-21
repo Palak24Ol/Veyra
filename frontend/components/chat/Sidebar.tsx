@@ -120,6 +120,7 @@ export default function Sidebar({
         className={`
         fixed lg:relative z-50 lg:z-0
         h-full bg-gray-900 dark:bg-gray-800 text-white flex flex-col
+        h-full coral-gradient text-white flex flex-col
         transition-all duration-300 ease-in-out
         ${
           isOpen
@@ -130,30 +131,30 @@ export default function Sidebar({
       >
         {/* Collapsed state - only show toggle buttons */}
         {!isOpen && (
-          <div className="hidden lg:flex flex-col h-full items-center py-4 space-y-2">
+          <div className="hidden lg:flex flex-col h-full items-center py-6 space-y-3">
             <button
               onClick={onToggle}
-              className="p-2 hover:bg-gray-700 dark:hover:bg-gray-600 rounded-lg transition-colors"
+              className="p-3 hover:bg-white/20 rounded-2xl transition-all duration-200 shadow-lg hover:shadow-xl"
               title="Open sidebar"
             >
-              <MessageSquare className="h-5 w-5" />
+              <MessageSquare className="h-6 w-6" />
             </button>
             <button
               onClick={onNewConversation}
-              className="p-2 hover:bg-gray-700 dark:hover:bg-gray-600 rounded-lg transition-colors"
+              className="p-3 hover:bg-white/20 rounded-2xl transition-all duration-200 shadow-lg hover:shadow-xl"
               title="New chat"
             >
-              <Plus className="h-5 w-5" />
+              <Plus className="h-6 w-6" />
             </button>
             <button
               onClick={toggleTheme}
-              className="p-2 hover:bg-gray-700 dark:hover:bg-gray-600 rounded-lg transition-colors"
+              className="p-3 hover:bg-white/20 rounded-2xl transition-all duration-200 shadow-lg hover:shadow-xl"
               title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
             >
               {theme === "light" ? (
-                <Moon className="h-5 w-5" />
+                <Moon className="h-6 w-6" />
               ) : (
-                <Sun className="h-5 w-5" />
+                <Sun className="h-6 w-6" />
               )}
             </button>
 
@@ -163,10 +164,10 @@ export default function Sidebar({
             <button
               onClick={handleLogout}
               disabled={isLoggingOut}
-              className="p-2 hover:bg-red-600 rounded-lg transition-colors disabled:opacity-50"
+              className="p-3 hover:bg-red-500/80 rounded-2xl transition-all duration-200 disabled:opacity-50 shadow-lg hover:shadow-xl"
               title="Logout"
             >
-              <LogOut className="h-5 w-5" />
+              <LogOut className="h-6 w-6" />
             </button>
           </div>
         )}
@@ -175,71 +176,75 @@ export default function Sidebar({
         {isOpen && (
           <>
             {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b border-gray-700 dark:border-gray-600">
+            <div className="flex items-center justify-between p-6 border-b border-white/20">
               <div className="flex items-center space-x-2">
-                <MessageSquare className="h-6 w-6" />
-                <span className="font-semibold">Xero Clone</span>
+                <div className="w-10 h-10 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
+                  <MessageSquare className="h-5 w-5" />
+                </div>
+                <span className="font-bold text-xl">Veyra</span>
               </div>
               <button
                 onClick={onToggle}
-                className="p-1.5 hover:bg-gray-700 dark:hover:bg-gray-600 rounded-lg transition-colors"
+                className="p-2 hover:bg-white/20 rounded-xl transition-all duration-200"
                 title="Close sidebar"
               >
-                <ChevronLeft className="h-4 w-4" />
+                <ChevronLeft className="h-5 w-5" />
               </button>
             </div>
 
             {/* Action Buttons */}
-            <div className="p-4 space-y-2">
+            <div className="p-6 space-y-3">
               <button
                 onClick={onNewConversation}
-                className="w-full flex items-center space-x-3 p-3 bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 rounded-lg transition-colors group"
+                className="w-full flex items-center space-x-3 p-4 bg-white/20 hover:bg-white/30 rounded-2xl transition-all duration-200 group backdrop-blur-sm shadow-lg hover:shadow-xl"
               >
-                <Plus className="h-5 w-5" />
-                <span>New Chat</span>
+                <Plus className="h-6 w-6" />
+                <span className="font-semibold">New Chat</span>
               </button>
 
               <button
                 onClick={() => setMemoryPanelOpen(true)}
-                className="w-full flex items-center space-x-3 p-3 bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors"
+                className="w-full flex items-center space-x-3 p-4 bg-white/15 hover:bg-white/25 rounded-2xl transition-all duration-200 backdrop-blur-sm shadow-lg hover:shadow-xl"
               >
-                <Brain className="h-5 w-5" />
-                <span>AI Memory</span>
+                <Brain className="h-6 w-6" />
+                <span className="font-semibold">AI Memory</span>
               </button>
 
               <button
                 onClick={toggleTheme}
-                className="w-full flex items-center space-x-3 p-3 bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 rounded-lg transition-colors"
+                className="w-full flex items-center space-x-3 p-4 bg-white/15 hover:bg-white/25 rounded-2xl transition-all duration-200 backdrop-blur-sm shadow-lg hover:shadow-xl"
               >
                 {theme === "light" ? (
-                  <Moon className="h-5 w-5" />
+                  <Moon className="h-6 w-6" />
                 ) : (
-                  <Sun className="h-5 w-5" />
+                  <Sun className="h-6 w-6" />
                 )}
-                <span>{theme === "light" ? "Dark Mode" : "Light Mode"}</span>
+                <span className="font-semibold">{theme === "light" ? "Dark Mode" : "Light Mode"}</span>
               </button>
             </div>
 
             {/* Conversations List */}
             <div className="flex-1 overflow-y-auto">
-              <div className="px-4 pb-4">
+              <div className="px-6 pb-6">
                 {conversations.length === 0 ? (
-                  <div className="text-center text-gray-400 py-8">
-                    <MessageSquare className="h-12 w-12 mx-auto mb-3 opacity-50" />
-                    <p>No conversations yet</p>
-                    <p className="text-sm">Start a new chat to begin</p>
+                  <div className="text-center text-white/70 py-12">
+                    <div className="w-16 h-16 bg-white/20 rounded-3xl flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
+                      <MessageSquare className="h-8 w-8 opacity-70" />
+                    </div>
+                    <p className="font-semibold mb-1">No conversations yet</p>
+                    <p className="text-sm opacity-80">Start a new chat to begin</p>
                   </div>
                 ) : (
-                  <div className="space-y-1">
+                  <div className="space-y-2">
                     {conversations.map((conversation) => (
                       <div
                         key={conversation.id}
                         className={`
-                          group relative flex items-center p-3 rounded-lg cursor-pointer transition-all duration-200
+                          group relative flex items-center p-4 rounded-2xl cursor-pointer transition-all duration-200 backdrop-blur-sm
                           ${
                             currentConversation?.id === conversation.id
-                              ? "bg-gray-700 dark:bg-gray-600 shadow-sm"
-                              : "hover:bg-gray-800 dark:hover:bg-gray-700"
+                              ? "bg-white/25 shadow-lg"
+                              : "hover:bg-white/15"
                           }
                         `}
                         onClick={() => onSelectConversation(conversation)}
@@ -249,10 +254,10 @@ export default function Sidebar({
                         onMouseLeave={() => setHoveredConversation(null)}
                       >
                         <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium truncate">
+                          <p className="text-sm font-semibold truncate">
                             {conversation.title}
                           </p>
-                          <p className="text-xs text-gray-400 mt-0.5">
+                          <p className="text-xs text-white/70 mt-1 font-medium">
                             {formatDate(conversation.lastMessageAt)} •{" "}
                             {conversation.model}
                           </p>
@@ -265,10 +270,10 @@ export default function Sidebar({
                               e.stopPropagation();
                               onDeleteConversation(conversation.id);
                             }}
-                            className="p-1.5 hover:bg-gray-600 dark:hover:bg-gray-500 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-200"
+                            className="p-2 hover:bg-red-500/80 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-lg"
                             title="Delete conversation"
                           >
-                            <Trash2 className="h-4 w-4 text-gray-400 hover:text-red-400" />
+                            <Trash2 className="h-4 w-4 text-white/80 hover:text-white" />
                           </button>
                         )}
                       </div>
@@ -279,20 +284,20 @@ export default function Sidebar({
             </div>
 
             {/* User Section */}
-            <div className="border-t border-gray-700 dark:border-gray-600 p-4">
-              <div className="flex items-center space-x-3 mb-3">
+            <div className="border-t border-white/20 p-6">
+              <div className="flex items-center space-x-3 mb-4">
                 <UserButton
                   appearance={{
                     elements: {
-                      avatarBox: "w-8 h-8",
+                      avatarBox: "w-10 h-10 rounded-2xl shadow-lg",
                     },
                   }}
                 />
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium truncate">
+                  <p className="text-sm font-semibold truncate">
                     {user?.firstName} {user?.lastName}
                   </p>
-                  <p className="text-xs text-gray-400 truncate">
+                  <p className="text-xs text-white/70 truncate">
                     {user?.emailAddresses[0]?.emailAddress}
                   </p>
                 </div>
@@ -302,10 +307,10 @@ export default function Sidebar({
               <button
                 onClick={handleLogout}
                 disabled={isLoggingOut}
-                className="w-full flex items-center space-x-3 p-2 text-red-400 hover:bg-red-600 hover:text-white rounded-lg transition-colors disabled:opacity-50"
+                className="w-full flex items-center space-x-3 p-3 text-white/90 hover:bg-red-500/80 hover:text-white rounded-2xl transition-all duration-200 disabled:opacity-50 backdrop-blur-sm shadow-lg hover:shadow-xl"
               >
-                <LogOut className="h-4 w-4" />
-                <span>{isLoggingOut ? "Logging out..." : "Logout"}</span>
+                <LogOut className="h-5 w-5" />
+                <span className="font-semibold">{isLoggingOut ? "Logging out..." : "Logout"}</span>
               </button>
             </div>
           </>

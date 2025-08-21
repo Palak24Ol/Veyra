@@ -79,41 +79,43 @@ export default function MemoryPanel({ isOpen, onClose }: MemoryPanelProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-      <div className="bg-white rounded-lg w-full max-w-2xl max-h-[80vh] flex flex-col">
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-md z-50 flex items-center justify-center p-4">
+      <div className="bg-white rounded-3xl w-full max-w-2xl max-h-[80vh] flex flex-col shadow-2xl border border-coral-200/50">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
+        <div className="flex items-center justify-between p-6 border-b border-coral-200/50">
           <div className="flex items-center space-x-2">
-            <Brain className="h-6 w-6 text-purple-600" />
-            <h2 className="text-xl font-semibold text-gray-900">AI Memory</h2>
+            <div className="w-10 h-10 bg-coral-100 rounded-2xl flex items-center justify-center">
+              <Brain className="h-6 w-6 text-coral-600" />
+            </div>
+            <h2 className="text-2xl font-bold text-gray-900">AI Memory</h2>
           </div>
           <div className="flex items-center space-x-2">
             <button
               onClick={loadMemories}
               disabled={isLoading}
-              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              className="p-2 hover:bg-coral-100 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md"
               title="Refresh memories"
             >
               <RefreshCw
-                className={`h-5 w-5 text-gray-600 ${
+                className={`h-5 w-5 text-coral-600 ${
                   isLoading ? "animate-spin" : ""
                 }`}
               />
             </button>
             <button
               onClick={onClose}
-              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              className="p-2 hover:bg-coral-100 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md"
             >
-              <X className="h-5 w-5 text-gray-600" />
+              <X className="h-5 w-5 text-coral-600" />
             </button>
           </div>
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-8">
           <div className="mb-4">
-            <p className="text-sm text-gray-600 mb-4">
-              Xero remembers important details from your conversations to
+            <p className="text-base text-gray-600 mb-6 leading-relaxed">
+              Veyra remembers important details from your conversations to
               provide more personalized responses. These memories help maintain
               context across different chat sessions.
             </p>
@@ -121,9 +123,9 @@ export default function MemoryPanel({ isOpen, onClose }: MemoryPanelProps) {
             {memories.length > 0 && (
               <button
                 onClick={deleteAllMemories}
-                className="flex items-center space-x-2 px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                className="flex items-center space-x-2 px-4 py-3 text-sm text-red-600 hover:bg-red-50 rounded-2xl transition-all duration-200 font-semibold shadow-sm hover:shadow-md"
               >
-                <Trash2 className="h-4 w-4" />
+                <Trash2 className="h-5 w-5" />
                 <span>Delete All Memories</span>
               </button>
             )}
@@ -131,26 +133,28 @@ export default function MemoryPanel({ isOpen, onClose }: MemoryPanelProps) {
 
           {isLoading ? (
             <div className="flex items-center justify-center py-8">
-              <RefreshCw className="h-6 w-6 animate-spin text-gray-400" />
-              <span className="ml-2 text-gray-600">Loading memories...</span>
+              <RefreshCw className="h-8 w-8 animate-spin text-coral-400" />
+              <span className="ml-3 text-gray-600 font-semibold">Loading memories...</span>
             </div>
           ) : memories.length === 0 ? (
-            <div className="text-center py-8">
-              <Brain className="h-12 w-12 mx-auto mb-3 text-gray-300" />
-              <p className="text-gray-500 mb-2">No memories yet</p>
-              <p className="text-sm text-gray-400">
-                Start chatting with Xero to build up your conversation memory
+            <div className="text-center py-12">
+              <div className="w-20 h-20 bg-coral-100 rounded-3xl flex items-center justify-center mx-auto mb-6">
+                <Brain className="h-10 w-10 text-coral-400" />
+              </div>
+              <p className="text-gray-500 mb-2 font-semibold text-lg">No memories yet</p>
+              <p className="text-sm text-gray-400 leading-relaxed">
+                Start chatting with Veyra to build up your conversation memory
               </p>
             </div>
           ) : (
-            <div className="space-y-3">
+            <div className="space-y-4">
               {memories.map((memory) => (
                 <div
                   key={memory.id}
-                  className="bg-gray-50 rounded-lg p-4 border border-gray-200"
+                  className="bg-coral-50/50 rounded-2xl p-5 border border-coral-200/50 shadow-sm hover:shadow-md transition-all duration-200"
                 >
-                  <p className="text-sm text-gray-900 mb-2">{memory.memory}</p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-sm text-gray-900 mb-3 leading-relaxed font-medium">{memory.memory}</p>
+                  <p className="text-xs text-coral-500 font-medium">
                     {formatDate(memory.created_at)}
                   </p>
                 </div>
@@ -160,8 +164,8 @@ export default function MemoryPanel({ isOpen, onClose }: MemoryPanelProps) {
         </div>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 p-4">
-          <p className="text-xs text-gray-500 text-center">
+        <div className="border-t border-coral-200/50 p-6">
+          <p className="text-xs text-coral-500 text-center font-medium">
             Memories are stored securely and used only to improve your chat
             experience
           </p>

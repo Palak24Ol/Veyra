@@ -69,19 +69,19 @@ export default function MessageBubble({
   return (
     <div
       className={`group w-full ${
-        isUser ? "bg-gray-50 dark:bg-gray-800" : "bg-white dark:bg-gray-900"
-      } border-b border-gray-100 dark:border-gray-700`}
+        isUser ? "bg-coral-50/50 dark:bg-gray-800" : "bg-white dark:bg-gray-900"
+      } border-b border-coral-100/50 dark:border-gray-700`}
     >
-      <div className="max-w-3xl mx-auto px-4 py-6">
+      <div className="max-w-3xl mx-auto px-4 py-8">
         <div className="flex items-start space-x-4">
           {/* Avatar */}
           <div
             className={`
-            w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0
+            w-10 h-10 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg
             ${
               isUser
-                ? "bg-black dark:bg-white text-white dark:text-black"
-                : "bg-green-600 text-white"
+                ? "bg-coral-500 text-white"
+                : "bg-coral-500 text-white"
             }
           `}
           >
@@ -90,29 +90,29 @@ export default function MessageBubble({
                 <img
                   src={user.imageUrl}
                   alt="User"
-                  className="w-8 h-8 rounded-full"
+                  className="w-10 h-10 rounded-2xl"
                 />
               ) : (
-                <User className="h-4 w-4" />
+                <User className="h-5 w-5" />
               )
             ) : (
-              <Bot className="h-4 w-4" />
+              <Bot className="h-5 w-5" />
             )}
           </div>
 
           {/* Message Content */}
           <div className="flex-1 min-w-0">
-            <div className="flex items-center space-x-2 mb-2">
-              <span className="font-semibold text-gray-900 dark:text-white">
-                {isUser ? user?.firstName || "You" : "Assistant"}
+            <div className="flex items-center space-x-2 mb-3">
+              <span className="font-bold text-gray-900 dark:text-white text-base">
+                {isUser ? user?.firstName || "You" : "Veyra"}
               </span>
               {message.model && !isUser && (
-                <span className="text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded-full">
+                <span className="text-xs text-coral-600 dark:text-gray-400 bg-coral-100 dark:bg-gray-700 px-3 py-1 rounded-full font-medium">
                   {message.model}
                 </span>
               )}
               {message.isEdited && (
-                <span className="text-xs text-gray-500 dark:text-gray-400 italic">
+                <span className="text-xs text-coral-500 dark:text-gray-400 italic font-medium">
                   (edited)
                 </span>
               )}
@@ -138,23 +138,23 @@ export default function MessageBubble({
                       value={editContent}
                       onChange={(e) => setEditContent(e.target.value)}
                       onKeyDown={handleKeyDown}
-                      className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white resize-none"
+                      className="w-full p-4 border border-coral-200 dark:border-gray-600 rounded-2xl focus:ring-2 focus:ring-coral-400 focus:border-coral-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white resize-none transition-all duration-200"
                       rows={Math.max(3, editContent.split("\n").length)}
                       autoFocus
                     />
                     <div className="flex items-center space-x-2">
                       <button
                         onClick={handleSaveEdit}
-                        className="flex items-center space-x-1 px-3 py-1 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm"
+                        className="flex items-center space-x-2 px-4 py-2 bg-coral-500 text-white rounded-xl hover:bg-coral-600 transition-all duration-200 text-sm font-semibold shadow-lg hover:shadow-xl"
                       >
-                        <Save className="h-3 w-3" />
+                        <Save className="h-4 w-4" />
                         <span>Save & Regenerate</span>
                       </button>
                       <button
                         onClick={handleCancelEdit}
-                        className="flex items-center space-x-1 px-3 py-1 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors text-sm"
+                        className="flex items-center space-x-2 px-4 py-2 bg-gray-500 text-white rounded-xl hover:bg-gray-600 transition-all duration-200 text-sm font-semibold shadow-lg hover:shadow-xl"
                       >
-                        <X className="h-3 w-3" />
+                        <X className="h-4 w-4" />
                         <span>Cancel</span>
                       </button>
                     </div>
@@ -169,32 +169,32 @@ export default function MessageBubble({
             )}
 
             {/* Message Actions */}
-            <div className="flex items-center justify-between mt-3 pt-2">
-              <span className="text-xs text-gray-500 dark:text-gray-400">
+            <div className="flex items-center justify-between mt-4 pt-3">
+              <span className="text-xs text-coral-500 dark:text-gray-400 font-medium">
                 {formatTime(message.timestamp)}
               </span>
 
               {!isEditing && message.content && (
-                <div className="flex items-center space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="flex items-center space-x-2 opacity-0 group-hover:opacity-100 transition-all duration-200">
                   {isUser && onEditMessage && (
                     <button
                       onClick={handleEdit}
-                      className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors"
+                      className="p-2 hover:bg-coral-100 dark:hover:bg-gray-700 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md"
                       title="Edit message"
                     >
-                      <Edit2 className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+                      <Edit2 className="h-4 w-4 text-coral-500 dark:text-gray-400" />
                     </button>
                   )}
                   {!isUser && (
                     <button
                       onClick={copyToClipboard}
-                      className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors"
+                      className="p-2 hover:bg-coral-100 dark:hover:bg-gray-700 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md"
                       title="Copy message"
                     >
                       {copied ? (
-                        <Check className="h-4 w-4 text-green-600" />
+                        <Check className="h-4 w-4 text-coral-500" />
                       ) : (
-                        <Copy className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+                        <Copy className="h-4 w-4 text-coral-500 dark:text-gray-400" />
                       )}
                     </button>
                   )}
